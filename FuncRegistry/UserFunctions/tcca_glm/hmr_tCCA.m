@@ -58,9 +58,9 @@ lstLS = lst(find(rhoSD>rhoSD_ssThresh & mlAct(lst) == 1));
 if flag_conc % get short(and active) now in conc
       
     % resting
-    dod = hmrIntensity2OD(d_rest);
-    dod = hmrBandpassFilt(dod, fq, 0, 0.5);
-    dc = hmrOD2Conc(dod, SD, [6 6]);
+    dod = hmrR_Intensity2OD(d_rest);
+    dod = hmrR_BandpassFilt(dod, fq, 0, 0.5);
+    dc = hmrR_OD2Conc(dod, SD, [6 6]);
     foo = [squeeze(dc(:,1,:)),squeeze(dc(:,2,:))];    % resize conc to match the size of d, HbO first half, HbR second half
     d_long_rest = [foo(:,lstLS), foo(:,lstLS+size(d_rest,2)/2)]; % first half HbO; second half HbR
     d_short_rest = [foo(:,lstSS), foo(:,lstSS+size(d_rest,2)/2)];
@@ -84,8 +84,8 @@ AUX_rest = AUX_rest(:,tCCAaux_inx);
 AUX = AUX(:,tCCAaux_inx);
 
 %% lowpass filter AUX signals
-AUX_rest = hmrBandpassFilt(AUX_rest, fq, 0, 0.5);
-AUX = hmrBandpassFilt(AUX, fq, 0, 0.5);
+AUX_rest = hmrR_BandpassFilt(AUX_rest, fq, 0, 0.5);
+AUX = hmrR_BandpassFilt(AUX, fq, 0, 0.5);
 
 %% AUX signals + add ss signal if it exists
 if ~isempty(d_short_rest)
