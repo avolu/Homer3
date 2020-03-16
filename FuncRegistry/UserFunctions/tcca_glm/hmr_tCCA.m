@@ -66,10 +66,7 @@ if flag_conc % get short(and active) now in conc
     d_short_rest = [foo(:,lstSS), foo(:,lstSS+size(d_rest,2)/2)];
     
     % current run
-    dod = hmrIntensity2OD(d);
-    dod = hmrBandpassFilt(dod, fq, 0, 0.5);
-    dc = hmrOD2Conc(dod, SD, [6 6]);
-    foo = [squeeze(dc(:,1,:)),squeeze(dc(:,2,:))]; % resize conc to match the size of d, HbO first half, HbR second half   
+    foo = [squeeze(d(:,1,:)),squeeze(d(:,2,:))]; % resize conc to match the size of d, HbO first half, HbR second half   
     d_short = [foo(:,lstSS), foo(:,lstSS+size(d,2)/2)]; % first half HbO; second half HbR
 
 else % get d_long and short(and active)
@@ -79,7 +76,7 @@ else % get d_long and short(and active)
     d_short_rest = [d_rest(:,lstLS), d_rest(:,lstLS+size(d_rest,2)/2)];
     
     % current run
-    d_short = [d(:,lstLS), d(:,lstLS+size(d,2)/2)];
+    d_short = [d(:,lstLS), d(:,lstLS+size(d,2)/2)]; %!!
 end
 
 % Use only the selected aux channels
