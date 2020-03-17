@@ -1,4 +1,4 @@
-function [Aaux] = hmr_tCCA(data_y, yRuns (#TO PICK RESTING FROM#),  probe , flagtCCA, tCCAparams, tCCAaux_inx, tCCArest_inx, rhoSD_ssThresh)
+function [Aaux] = hmr_tCCA(data, aux,  probe, yRuns, flagtCCA, tCCAparams, tCCAaux_inx, tCCArest_inx, rhoSD_ssThresh)
 % data_y: current run
 % yRuns: all runs in the session
 % flagtCCA: on/off
@@ -28,7 +28,7 @@ AUX_rest = XXXXXXX
 
 %% current run\
 for iBlk=1:length(data)
-    snirf = SnirfClass(data_y,stim);
+    snirf = SnirfClass(data,stim,aux);
     AUX = snirf.GetAuxiliary();  % CHECK THIS ONE!
     d = snirf.GetDataMatrix();
     SrcPos = probe.GetSrcPos();
